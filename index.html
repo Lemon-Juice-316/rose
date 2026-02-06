@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Happy Rose Day 🌹</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff1744 0%, #f50057 100%);
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background 3s ease;
+    }
+
+    .container {
+      max-width: 95%;
+      padding: 15px;
+      z-index: 10;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin: 0 0 15px;
+      text-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+      animation: heartbeat 1.5s infinite alternate;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      margin: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    button {
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      padding: 15px 50px;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.4s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      min-width: 160px;
+    }
+
+    #yesBtn {
+      background: linear-gradient(45deg, #ff4081, #f50057);
+      color: white;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.15);
+    }
+
+    #noBtn {
+      background: #37474f;
+      color: white;
+    }
+
+    .rose {
+      position: absolute;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      pointer-events: none;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-120vh) rotate(0deg); }
+      100% { transform: translateY(120vh) rotate(720deg); }
+    }
+
+    #message {
+      font-size: clamp(1.8rem, 5vw, 2.5rem); /* Fixed - no over-magnify */
+      margin: 20px auto;
+      max-height: 70vh;
+      overflow-y: auto; /* Scroll if too long on small screen */
+      padding: 10px;
+      display: none;
+      animation: fadeIn 2s;
+      line-height: 1.4;
+    }
+
+    #message img {
+      max-width: 80%;
+      max-height: 40vh;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      margin: 20px auto;
+      display: block;
+      animation: bounceIn 2s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      #message { font-size: 1.6rem; padding: 10px; }
+      button { padding: 15px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Happy Rose Day 🌹</h1>
+    <h2>Megha Ji Tofaa Kabul karooooo.🌹</h2>
+    
+    <div class="buttons">
+      <button id="yesBtn">Yes Beb! 😍🌹</button>
+      <button id="noBtn">Nahi 😔</button>
+    </div>
+
+    <div id="message">
+      
+      <!-- Cute animated chibi couple rose GIF - moving aur loving -->
+      <img src="https://media1.tenor.com/m/3YCaPcgcfFkAAAAC/rose-rosa.gif" 
+           alt="Cute Chibi Boy Giving Rose to Girl Animated!">
+      
+      <p style="font-size: 1.8rem; color: #fff176; margin-top: 20px;">
+         🐼🌹❤️
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function createRose() {
+      const rose = document.createElement("div");
+      rose.classList.add("rose");
+      rose.innerHTML = "🌹";
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = (Math.random() * 4 + 5) + "s";
+      document.body.appendChild(rose);
+      setTimeout(() => rose.remove(), 10000);
+    }
+    setInterval(createRose, 300);
+
+    const noBtn = document.getElementById("noBtn");
+    const moveNoBtn = () => {
+      const x = Math.random() * (window.innerWidth - 200);
+      const y = Math.random() * (window.innerHeight - 200);
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    };
+    noBtn.addEventListener("mouseover", moveNoBtn);
+    noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); moveNoBtn(); });
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      document.body.style.background = "linear-gradient(135deg, #c2185b 0%, #880e4f 100%)";
+      document.querySelector("h1").style.display = "none";
+      document.querySelector("h2").style.display = "none";
+      document.querySelector(".buttons").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      
+      for(let i = 0; i < 60; i++) {
+        setTimeout(createRose, i * 80);
+      }
+    });
+  </script>
+
+</body>
+</html>
